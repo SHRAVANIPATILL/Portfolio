@@ -6,13 +6,13 @@ import TrackVisibility from 'react-on-screen';
 
 export const Contact = () => {
   const formInitialDetails = {
-    firstName: 'Shravani',
-    lastName: 'Patil',
-    email: 'pshravani49@gmail.com',
-    phone: '8080348424',
-    message: 'Hii !! There...'
+    firstName: formDetails.firstName,
+    lastName: formDetails.lastName,
+    email: formDetails.email,
+    phone: formDetails.phone,
+    message: formDetails.message
   };
-  const [formDetails, setFormDetails] = useState(formInitialDetails);
+  const [formDetails, setFormDetails] = useState();
   const [buttonText, setButtonText] = useState('Send');
   const [status, setStatus] = useState({});
 
@@ -70,7 +70,7 @@ export const Contact = () => {
                   <form onSubmit={handleSubmit}>
                     <Row>
                       <Col size={12} sm={6} className="px-1">
-                        <input type="text" value={formDetails.firstName} placeholder="First Name" onChange={(e) => onFormUpdate('firstName', e.target.value)} />
+                        <input type="text" placeholder="First Name" onChange={(e) => onFormUpdate('firstName', e.target.value)} />
                       </Col>
                       <Col size={12} sm={6} className="px-1">
                         <input type="text" value={formDetails.lastName} placeholder="Last Name" onChange={(e) => onFormUpdate('lastName', e.target.value)} />

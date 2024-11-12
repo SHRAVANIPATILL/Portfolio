@@ -21,26 +21,24 @@ const mongoURI = process.env.MONGO_URI; // Change this if you're using a remote 
 
 // Connect to MongoDB
 mongoose
-  .connect(mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(mongoURI)
   .then(() => {
     console.log("MongoDB connected successfully");
-    fetchAndLogProjects(); // Fetch and log projects after successful connection
+    // fetchAndLogProjects(); // Fetch and log projects after successful connection
   })
   .catch((err) => console.error("MongoDB connection error:", err));
 
-// Define a schema and model for your collection
-const projectSchema = new mongoose.Schema({
-  title: String,
-  description: String,
-  technologies: [String],
-  link: String,
-  image: String,
-});
 
-const Project = mongoose.model("Project", projectSchema);
+// // Define a schema and model for your collection
+// const projectSchema = new mongoose.Schema({
+//   title: String,
+//   description: String,
+//   technologies: [String],
+//   link: String,
+//   image: String,
+// });
+
+// const Project = mongoose.model("Project", projectSchema);
 
 // Define the Contact schema
 const contactSchema = new mongoose.Schema({
@@ -69,31 +67,30 @@ app.post('/contact', async (req, res) => {
 });
 
 // API route to fetch projects
-app.get("/api/projects", async (req, res) => {
-  console.log("Received GET request to /api/projects");
-  try {
-    const projects = await Project.find(); // Fetch projects from MongoDB
-    if (projects.length === 0) {
-      console.log("No projects found");
-    }
-    res.json(projects); // Send the data as JSON to the frontend
-    console.log("Fetched Projects:", projects);
-  } catch (err) {
-    console.error("Error fetching:", err);
-    res.status(500).json({ error: "Could not fetch projects" });
-  }
-});
+// app.get("/api/projects", async (req, res) => {
+//   console.log("Received GET request to /api/projects");
+//   try {
+//     const projects = await Project.find(); // Fetch projects from MongoDB
+//     if (projects.length === 0) {
+//       console.log("No projects found");
+//     }
+//     res.json(projects); // Send the data as JSON to the frontend
+//     console.log("Fetched Projects:", projects);
+//   } catch (err) {
+//     console.error("Error fetching:", err);
+//     res.status(500).json({ error: "Could not fetch projects" });
+//   }
+// });
 
 // Function to fetch and log all projects from the database
-const fetchAndLogProjects = async () => {
-  try {
-    const projects = await Project.find(); // Fetch projects from MongoDB
-    // console.log("Projects fetched:", projects); // Log fetched data to the console
-    console.log("Projects count:", projects.length);
-  } catch (err) {
-    console.error("Error fetching:", err); // Handle errors
-  }
-};
+// const fetchAndLogProjects = async () => {
+//   try {
+//     const projects = await Project.find(); // Fetch projects from MongoDB
+//     // console.log("Projects fetched:", projects); // Log fetched data to the console
+//   } catch (err) {
+//     console.error("Error fetching:", err); // Handle errors
+//   }
+// };
 
 // Deployment code
 const __dirname = path.resolve();
